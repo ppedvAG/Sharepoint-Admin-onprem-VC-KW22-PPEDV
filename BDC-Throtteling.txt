@@ -1,0 +1,11 @@
+Get-SPBusinessDataCatalogThrottleConfig -Scope Database -ThrottleType Items -ServiceApplicationProxy $contosoServAppProxy | Set-SPBusinessDataCatalogThrottleConfig -Maximum 1000000000 -Default 500000
+------------------------------------
+
+$bcs = Get-SPServiceApplicationProxy | where{$_.GetType().FullName -eq (‘Microsoft.SharePoint.BusinessData.SharedService.’ + ‘BdcServiceApplicationProxy’)}
+
+$BCSThrottle = Get-SPBusinessDataCatalogThrottleConfig -Scope database -ThrottleType items -ServiceApplicationProxy $bcs
+
+ $BCSThrottle
+--------------------------------------------------------
+
+Set-SPBusinessDataCatalogThrottleConfig -Identity $BCSThrottle -Maximum 1000000 -Default 20000

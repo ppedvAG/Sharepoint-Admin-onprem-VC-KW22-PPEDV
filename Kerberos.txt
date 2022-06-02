@@ -1,0 +1,18 @@
+1)	setspn -l domäne\benutzername      			(zum Abfragen schon vorhandener SPNs) 
+
+2)	setspn -s MSSQLSvc/shp19-1:1433 sample\administrator				
+	setspn -s MSSQLSvc/shp19-1.sample.local:1433 sample\administrator		(SQL-Dienstkonto notwendig für Zugriff-Delegierung) - sf13 ist der SQL-Server; f13 das Dienstkonto vom SQL
+
+3)	setspn -s HTTP/shp19-1 sample\shp-service 			
+	setspn -s HTTP/shp19-1.sample.local sample\shp-service 			(SPNs für Webanwendungen setzen) - sf13 ist die Webanwendung und f13 das Dienstkonto für die Webanwendung
+
+
+	setspn -s HTTP/shp19-1:11111 sample\farm 				(für ZA)
+	setspn -s HTTP/shp19-1.sample.local:11111 sample\farm
+
+Danach Auth. für die Webanwendung auf Kerberos ändern und im IIS prüfen (Windowsauth.), dass "Negotiate" oben in der Rangliste steht!
+Mit "klist" ; "klist purge" dann in der cmd prüfen ob Tickets ausgestellt wurden!
+
+ 
+
+

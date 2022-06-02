@@ -1,0 +1,4 @@
+$account = Get-SPManagedAccount domain\user
+$appPool = New-SPServiceApplicationPool -Name SubscriptionServiceAppPool -Account $account
+$serviceApp = New-SPSubscriptionSettingsServiceApplication -ApplicationPool $appPool -name "Subscription Settings Service" -DatabaseName "Subscription_Settings_DB" 
+$serviceAppProxy = New-SPSubscriptionSettingsServiceApplicationProxy -ServiceApplication $serviceApp

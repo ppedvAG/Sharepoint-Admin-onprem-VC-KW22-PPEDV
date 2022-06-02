@@ -1,0 +1,16 @@
+BackConnectionHostNames eintragen
+ Legen Sie in der Registry unter dem Pfad HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0 einen neuen Multi-String-Eintrag mit dem Namem “BackConnectionHostNames” und tragen Sie die betroffenen Hostheader (z.B. SERVERNAME) als Wert ein.
+
+oder via PowerShell
+New-ItemProperty HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0 -Name “BackConnectionHostNames” -value “SERVERNAME” -PropertyType multivalue
+
+Starten Sie anschliessend den Server neu.
+
+Diese Variante sollte nur für Testumgebungen genutzt werden.
+Disable Loopback Check
+ Legen Sie in der Registry unter dem Pfad HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\ einen neuen DWORD (32-Bit)-Eintrag mit dem Namem “DisableLoopbackCheck” und tragen Sie als Wert “1” ein.
+
+oder per PowerShell
+New-ItemProperty HKLM:\System\CurrentControlSet\Control\Lsa -Name “DisableLoopbackCheck” -value “1” -PropertyType dword
+
+Führen Sie einen IIS reset durch.

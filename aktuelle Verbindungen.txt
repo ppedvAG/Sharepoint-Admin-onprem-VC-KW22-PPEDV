@@ -1,0 +1,7 @@
+$servername = "shp19-1"
+Get-Counter -Counter 'web service(_total)\current connections' -ComputerName $servername
+
+
+$servername = "shp19-1, shp19-2"
+$WebSiteName="sharepoint-80" #Web site name in IIS
+Get-Counter -Counter "web service($WebSiteName)\current connections" -ComputerName $ServerNames

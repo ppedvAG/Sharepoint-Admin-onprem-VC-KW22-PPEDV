@@ -1,0 +1,40 @@
+if((Get-PSSnapin | Where {$_.Name -eq "Microsoft.SharePoint.PowerShell"}) -eq $null) {
+     Add-PSSnapin Microsoft.SharePoint.PowerShell;
+}
+
+ $sourceWebURL = "http://hv-sharepoint/websites/training/daten"
+ $sourceListName = "Angebote"
+
+ $spSourceWeb = Get-SPWeb $sourceWebURL
+ $spSourceList = $spSourceWeb.Lists[$sourceListName]
+ $spSourceItems = $spSourceList.Items
+
+ $spSourceItems | ForEach-Object {
+     Write-Host $_['ID']
+     Write-Host $_['Title']
+Write-Host $_.UniqueId
+}
+
+{2ae23204-d231-445c-bf00-bbb25b422362}
+
+
+
+--------------------------------------------------------------
+
+if((Get-PSSnapin | Where {$_.Name -eq "Microsoft.SharePoint.PowerShell"}) -eq $null) {
+     Add-PSSnapin Microsoft.SharePoint.PowerShell;
+}
+
+ $sourceWebURL = "http://hv-sharepoint/websites/training/daten"
+ $sourceListName = "Angebote"
+
+ $spSourceWeb = Get-SPWeb $sourceWebURL
+ $spSourceList = $spSourceWeb.Lists[$sourceListName]
+#$spSourceItems = $spSourceList.GetItems()
+#$spSourceItems = $spSourceList.GetItemById("1")
+ $spSourceItems = $spSourceList.Items | where {$_['ID'] -eq 1}
+
+ $spSourceItems | ForEach-Object {
+     Write-Host $_['ID']
+     Write-Host $_['Title']
+}
