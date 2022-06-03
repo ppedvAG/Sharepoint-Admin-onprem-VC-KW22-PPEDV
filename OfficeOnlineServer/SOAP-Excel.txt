@@ -1,0 +1,8 @@
+$Farm = Get-SPFarm
+$Farm.Properties.Add("WopiLegacySoapSupport", "<URL>/x/_vti_bin/ExcelServiceInternal.asmx");
+$Farm.Update();
+
+
+***Als URL die  Url von dem OfficeOnlineServer angeben***
+
+***Für Exceldaten-Refresh in z.b. Webparts notwendig***
